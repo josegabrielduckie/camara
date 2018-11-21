@@ -102,13 +102,7 @@ MediaController control;
     public void capturarFoto( ) {
         Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
 
-        //Con esta linea de codigo hacemos que la duracion del video sea de 5 segundos
 
-        intent.putExtra(MediaStore.EXTRA_DURATION_LIMIT ,5);
-
-        //En esta linea de codigo cuando termine los 5 segundos finalizara el video
-
-        intent.putExtra(MediaStore.EXTRA_FINISH_ON_COMPLETION,false);
 
 
         File ficheroFoto = null;
@@ -120,6 +114,13 @@ MediaController control;
             e.printStackTrace();
         }
         intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(ficheroFoto));
+        //Con esta linea de codigo hacemos que la duracion del video sea de 5 segundos
+
+        intent.putExtra(MediaStore.EXTRA_DURATION_LIMIT ,5);
+
+        //En esta linea de codigo cuando termine los 5 segundos finalizara el video
+
+        intent.putExtra(MediaStore.EXTRA_FINISH_ON_COMPLETION,false);
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(intent, VENGO_DE_LA_CAMARA_CON_FICHERO);
         }else{
